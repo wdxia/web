@@ -1,8 +1,7 @@
 <template>
-  <div class="wrapper">
-    <p>this is my wrappers hi brother</p>
-    <img src="./assets/color.png" alt="color">
-  </div>
+<div id="app">
+  <router-view></router-view>
+</div>
 </template>
 
 <script>
@@ -12,13 +11,10 @@ export default {
 </script>
 
 <style lang="scss">
-  .wrapper {
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    & p {
-      color: red;
-      font-size: 30px;
-    }
-  }
+#app {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  border: 10px solid blue;
+}
 </style>

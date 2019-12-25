@@ -1,3 +1,4 @@
+'use strict'
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
@@ -5,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
+const resolve = dir => path.resolve(__dirname, dir)
 
 module.exports = {
   entry: './src/index.js',
@@ -18,13 +20,24 @@ module.exports = {
     port: 9027,
     quiet: true
   },
-  mode: 'production',
+  mode: 'development',
   module: {
     rules: [
+      {
+        test: /\.(eot|ttf|woff|woff2|svg|svgz)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 102400,
+            esModule: false
+          }
+        }
+      },
       { 
         test: /\.css$/, 
         use: [
           MiniCssExtractPlugin.loader,
+          // 'style-loader',
           'css-loader',
           'postcss-loader'
         ] 
@@ -33,6 +46,7 @@ module.exports = {
         test: /\.scss$/, 
         use: [
           MiniCssExtractPlugin.loader,
+          // 'style-loader',
           'css-loader',
           'sass-loader',
           'postcss-loader'
@@ -90,5 +104,11 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new FriendlyErrorsWebpackPlugin()
-  ]
+  ],
+  resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      '@': resolve('src')
+    }
+  }
 }
