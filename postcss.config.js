@@ -3,7 +3,7 @@ module.exports = {
     autoprefixer: {},
     'postcss-px-to-viewport' : {
       unitToConvert: 'px',
-      viewportWidth: 750,
+      viewportWidth: 1920,
       unitPrecision: 5,
       propList: ['*'],
       viewportUnit: 'vw',

@@ -13,8 +13,9 @@ export default {
 <style lang="scss">
 #app {
   width: 100%;
+  overflow: hidden;
   height: 100%;
   min-height: 100vh;
-  border: 10px solid blue;
+  border: 1px solid blue;
 }
 </style>
